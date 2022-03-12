@@ -17,9 +17,23 @@ import re
 #     This file is licensed under the MIT License.
 #     License text available at https://opensource.org/licenses/MIT
 
-# global parameters
+# print actual Python version and exit if version is too old
 MINIMAL_MAJOR_VERSION = 3
 MINIMAL_MINOR_VERSION = 9
+m = re.match(r"(\d+)\.(\d+)\.", sys.version)
+major = int(m.group(1))  # type: ignore
+minor = int(m.group(2))  # type: ignore
+print(f"Python version: {major}.{minor}")
+if major < MINIMAL_MAJOR_VERSION or (
+    major == MINIMAL_MAJOR_VERSION and minor < MINIMAL_MINOR_VERSION
+):
+    print(
+        f"Exit: Run code with Python version "
+        + f"{MINIMAL_MAJOR_VERSION}.{MINIMAL_MINOR_VERSION} or higher"
+    )
+    sys.exit(1)
+
+# global parameters
 ARRAY_SIZE = 1_000_000
 REF_RND_DICT = {0: 1845, 500_000: 280_806_764, 999_999: 225_052_250}
 REF_SRT_DICT = {0: 0, 500_000: 200_729_000, 999_999: 1_072_791_760}
@@ -61,20 +75,6 @@ def check_array(arr: list[int], ref: dict[int, int]):
             return "Failed"
     return "Passed"
 
-
-# print actual Python version and exit if version is too old
-m = re.match(r"(\d+)\.(\d+)\.", sys.version)
-major = int(m.group(1))  # type: ignore
-minor = int(m.group(2))  # type: ignore
-print(f"Python version: {major}.{minor}")
-if major < MINIMAL_MAJOR_VERSION or (
-    major == MINIMAL_MAJOR_VERSION and minor < MINIMAL_MINOR_VERSION
-):
-    print(
-        f"Exit: Run code with Python version "
-        + f"{MINIMAL_MAJOR_VERSION}.{MINIMAL_MINOR_VERSION} or higher"
-    )
-    sys.exit(1)
 
 # init generators
 rand1 = prng(1)

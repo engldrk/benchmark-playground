@@ -17,9 +17,24 @@ ini_set('memory_limit', '-1');
 //     This file is licensed under the MIT License.
 //     License text available at https://opensource.org/licenses/MIT
 
-// global parameters
+// print actual PHP version and exit if version is too old
 const MINIMAL_MAJOR_VERSION = 7;
 const MINIMAL_MINOR_VERSION = 4;
+echo 'PHP version: ' . PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . "\n";
+if (
+  PHP_MAJOR_VERSION < MINIMAL_MAJOR_VERSION or
+  PHP_MAJOR_VERSION == MINIMAL_MAJOR_VERSION and
+    PHP_MINOR_VERSION < MINIMAL_MINOR_VERSION
+) {
+  echo 'Exit: Run code with PHP version ' .
+    MINIMAL_MAJOR_VERSION .
+    '.' .
+    MINIMAL_MINOR_VERSION .
+    ' or righter';
+  exit(1);
+}
+
+// global parameters
 const ARRAY_SIZE = 1_000_000;
 const REF_RND_DICT = [
   0 => 1845,
@@ -73,21 +88,6 @@ function check_array(array $arr, array $ref): string
     }
   }
   return 'Passed';
-}
-
-// print actual PHP version and exit if version is too old
-echo 'PHP version: ' . PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . "\n";
-if (
-  PHP_MAJOR_VERSION < MINIMAL_MAJOR_VERSION or
-  PHP_MAJOR_VERSION == MINIMAL_MAJOR_VERSION and
-    PHP_MINOR_VERSION < MINIMAL_MINOR_VERSION
-) {
-  echo 'Exit: Run code with PHP version ' .
-    MINIMAL_MAJOR_VERSION .
-    '.' .
-    MINIMAL_MINOR_VERSION .
-    ' or righter';
-  exit(1);
 }
 
 // init generators

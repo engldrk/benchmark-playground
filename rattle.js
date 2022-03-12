@@ -16,9 +16,24 @@
 //     This file is licensed under the MIT License.
 //     License text available at https://opensource.org/licenses/MIT
 
-// global parameters
+// print actual node version and exit if version is too old
 const MINIMAL_MAJOR_VERSION = 12;
 const MINIMAL_MINOR_VERSION = 0;
+const vermatch = process.version.match(/(\d+)\.(\d+)\./);
+const [major, minor] = vermatch.slice(1).map((_) => parseInt(_));
+console.log(`Node version: ${major}.${minor}`);
+if (
+  major < MINIMAL_MAJOR_VERSION ||
+  (major == MINIMAL_MAJOR_VERSION && minor < MINIMAL_MINOR_VERSION)
+) {
+  console.error(
+    `Exit: Run code with NodeJS version ` +
+      `${MINIMAL_MAJOR_VERSION}.${MINIMAL_MINOR_VERSION} or higher`
+  );
+  process.exit(1);
+}
+
+// global parameters
 const ARRAY_SIZE = 1_000_000;
 const REF_RND_DICT = { 0: 1845, 500_000: 280_806_764, 999_999: 225_052_250 };
 const REF_SRT_DICT = { 0: 0, 500_000: 200_729_000, 999_999: 1_072_791_760 };
@@ -61,21 +76,6 @@ function check_array(arr, ref) {
     }
   }
   return 'Passed';
-}
-
-// print actual node version and exit if version is too old
-const vermatch = process.version.match(/(\d+)\.(\d+)\./);
-const [major, minor] = vermatch.slice(1).map((_) => parseInt(_));
-console.log(`Node version: ${major}.${minor}`);
-if (
-  major < MINIMAL_MAJOR_VERSION ||
-  (major == MINIMAL_MAJOR_VERSION && minor < MINIMAL_MINOR_VERSION)
-) {
-  console.error(
-    `Exit: Run code with NodeJS version ` +
-      `${MINIMAL_MAJOR_VERSION}.${MINIMAL_MINOR_VERSION} or higher`
-  );
-  process.exit(1);
 }
 
 // init generators
