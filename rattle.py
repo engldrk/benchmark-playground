@@ -1,5 +1,7 @@
 import sys
 import re
+from typing import List
+from typing import Dict
 
 # Copyright (c) 2022 Dirk Engel
 #
@@ -19,17 +21,20 @@ import re
 
 # print actual Python version and exit if version is too old
 MINIMAL_MAJOR_VERSION = 3
-MINIMAL_MINOR_VERSION = 9
+MINIMAL_MINOR_VERSION = 7
 m = re.match(r"(\d+)\.(\d+)\.", sys.version)
 major = int(m.group(1))  # type: ignore
 minor = int(m.group(2))  # type: ignore
-print(f"Python version: {major}.{minor}")
+print("Python version: {major}.{minor}".format(major=major, minor=minor))
 if major < MINIMAL_MAJOR_VERSION or (
     major == MINIMAL_MAJOR_VERSION and minor < MINIMAL_MINOR_VERSION
 ):
     print(
-        f"Exit: Run code with Python version "
-        + f"{MINIMAL_MAJOR_VERSION}.{MINIMAL_MINOR_VERSION} or higher"
+        "Exit: Run code with Python version "
+        + "{MINIMAL_MAJOR_VERSION}.{MINIMAL_MINOR_VERSION} or higher".format(
+            MINIMAL_MAJOR_VERSION=MINIMAL_MAJOR_VERSION,
+            MINIMAL_MINOR_VERSION=MINIMAL_MINOR_VERSION,
+        )
     )
     sys.exit(1)
 
@@ -50,13 +55,13 @@ def prng(seed: int):
 
 
 # classic quicksort function
-def quicksort(arr: list[int]) -> list[int]:
+def quicksort(arr: List[int]) -> List[int]:
     if len(arr) <= 1:
         return arr
     else:
-        left: list[int] = []
-        center: list[int] = []
-        right: list[int] = []
+        left: List[int] = []
+        center: List[int] = []
+        right: List[int] = []
         pivot = arr[0]
         for number in arr:
             if number < pivot:
@@ -69,7 +74,7 @@ def quicksort(arr: list[int]) -> list[int]:
 
 
 # function to check content of array
-def check_array(arr: list[int], ref: dict[int, int]):
+def check_array(arr: List[int], ref: Dict[int, int]) -> str:
     for k, v in ref.items():
         if arr[k] != v:
             return "Failed"
@@ -81,7 +86,7 @@ rand1 = prng(1)
 rand2 = prng(2)
 
 # create an array of unsortes int numbers
-rnd_arr: list[int] = []
+rnd_arr: List[int] = []
 for _ in range(ARRAY_SIZE):
     rnd_arr.append(rand1() * rand2())
 
