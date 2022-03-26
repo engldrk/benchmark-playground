@@ -1,20 +1,22 @@
-'use strict';
+/*
+Copyright (c) 2022 Dirk Engel
 
-// Copyright (c) 2022 Dirk Engel
-//
-// NAME
-//     rattle.js - Demo script to measure tech. efficiency of node and deno
-// SYNOPSIS
-//     node rattle.js
-//     deno run --compat --allow-read --unstable rattle.js
-// DESCRIPTION
-//     Generation and (quick) sorting of one million pseudo random numbers.
-//     Results are spot checked internally to ensure comparability.
-//     Minimal Node version is checked upfront. Compare this code with
-//     the code of its siblings rattle.py and rattle.php.
-// LICENSE
-//     This file is licensed under the MIT License.
-//     License text available at https://opensource.org/licenses/MIT
+NAME
+    rattle.js - Demo script to measure tech. efficiency of node and deno
+SYNOPSIS
+    node rattle.js
+    deno run --compat --allow-read --unstable rattle.js
+DESCRIPTION
+    Generation and (quick) sorting of one million pseudo random numbers.
+    Results are spot checked internally to ensure comparability.
+    Minimal Node version is checked upfront. Compare this code with
+    the code of its siblings rattle.py and rattle.php.
+LICENSE
+    This file is licensed under the MIT License.
+    License text available at https://opensource.org/licenses/MIT
+*/
+
+'use strict';
 
 // print actual node version and exit if version is too old
 const MINIMAL_MAJOR_VERSION = 12;

@@ -1,8 +1,4 @@
-import sys
-import re
-from typing import List
-from typing import Dict
-
+#
 # Copyright (c) 2022 Dirk Engel
 #
 # NAME
@@ -18,6 +14,12 @@ from typing import Dict
 # LICENSE
 #     This file is licensed under the MIT License.
 #     License text available at https://opensource.org/licenses/MIT
+#
+
+import sys
+import re
+from typing import List
+from typing import Dict
 
 # print actual Python version and exit if version is too old
 MINIMAL_MAJOR_VERSION = 3

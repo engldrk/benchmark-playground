@@ -1,21 +1,24 @@
 <?php
+
+/*
+Copyright (c) 2022 Dirk Engel
+
+NAME
+    rattle.php - Demo script to measure tech. efficiency of PHP
+SYNOPSIS
+    php rattle.php
+DESCRIPTION
+    Generation and (quick) sorting of one million pseudo random numbers.
+    Results are spot checked internally to ensure comparability.
+    Minimal PHP version is checked upfront. Compare this code with
+    the code of its siblings rattle.py and rattle.js.
+LICENSE
+    This file is licensed under the MIT License.
+    License text available at https://opensource.org/licenses/MIT
+*/
+
 declare(strict_types=1);
 ini_set('memory_limit', '-1');
-
-// Copyright (c) 2022 Dirk Engel
-//
-// NAME
-//     rattle.php - Demo script to measure tech. efficiency of PHP
-// SYNOPSIS
-//     php rattle.php
-// DESCRIPTION
-//     Generation and (quick) sorting of one million pseudo random numbers.
-//     Results are spot checked internally to ensure comparability.
-//     Minimal PHP version is checked upfront. Compare this code with
-//     the code of its siblings rattle.py and rattle.js.
-// LICENSE
-//     This file is licensed under the MIT License.
-//     License text available at https://opensource.org/licenses/MIT
 
 // print actual PHP version and exit if version is too old
 const MINIMAL_MAJOR_VERSION = 7;
