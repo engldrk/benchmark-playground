@@ -47,11 +47,11 @@ REF_SRT_DICT = {0: 0, 500_000: 200_729_000, 999_999: 1_072_791_760}
 
 # pseudo random number generator
 # compare https://rosettacode.org/wiki/Linear_congruential_generator
-def prng(seed: int):
+def prng(sd: int):
     def rand():
-        nonlocal seed
-        seed = (214013 * seed + 2531011) & 0x7FFFFFFF
-        return seed >> 16
+        nonlocal sd
+        sd = (214013 * sd + 2531011) & 0x7FFFFFFF
+        return sd >> 16
 
     return rand
 
